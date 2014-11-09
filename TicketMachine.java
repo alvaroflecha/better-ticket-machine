@@ -17,6 +17,8 @@ public class TicketMachine
     private int balance;
     // The total amount of money collected by this machine.
     private int total;
+    //The price of a ticket with discount from this machine.
+    private double discountPrice;
 
     /**
      * Create a machine that issues tickets of the given price.
@@ -26,6 +28,7 @@ public class TicketMachine
         price = cost;
         balance = 0;
         total = 0;
+        discountPrice = price - (price * 0.1);
     }
 
     /**
