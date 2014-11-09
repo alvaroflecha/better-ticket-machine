@@ -127,5 +127,13 @@ public class TicketMachine
       total = 0;
       return amountTotalMachine;
     }
+    /** 
+     * Realiza descuento del 10% sobre el precio del billete
+     */
+    
+    public double getDiscountPrice()
+    {
+      return discountPrice;
+    }
 }
 
