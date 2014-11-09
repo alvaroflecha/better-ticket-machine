@@ -160,4 +160,15 @@ public class TicketMachine
                    
         }
     }
+    /**
+     * Devuelve el dinero que hace falta meter
+     * para poder imprimir un ticket con descuento
+     */
+    public double getAmountLeftToPayDiscount()
+    {
+       double amountLeftToPayDiscount = discountPrice - balance;
+       return amountLeftToPayDiscount;
+      
+    }
+    
 }
