@@ -12,29 +12,30 @@
 public class TicketMachine
 {
     // The price of a ticket from this machine.
-    private double price;
+    private int price;
     // The amount of money entered by a customer so far.
-    private double balance;
+    private int balance;
     // The total amount of money collected by this machine.
-    private double total;
+    private int total;
     //The price of a ticket with discount from this machine.
-    private double discountPrice;
+    private int discountPrice;
 
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(double cost)
+    public TicketMachine(int cost, int percentageDiscount)
     {
         price = cost;
+        discountPrice = price - (price * percentageDiscount/100);
         balance = 0;
         total = 0;
-        discountPrice = price - (price * 0.1);
+        
     }
 
     /**
      * @Return The price of a ticket.
      */
-    public double getPrice()
+    public int getPrice()
     {
         return price;
     }
@@ -43,7 +44,7 @@ public class TicketMachine
      * Return The amount of money already inserted for the
      * next ticket.
      */
-    public double getBalance()
+    public int getBalance()
     {
         return balance;
     }
@@ -52,7 +53,7 @@ public class TicketMachine
      * Receive an amount of money from a customer.
      * Check that the amount is sensible.
      */
-    public void insertMoney(double amount)
+    public void insertMoney(int amount)
     {
         if(amount > 0) {
             balance = balance + amount;
@@ -85,7 +86,7 @@ public class TicketMachine
             balance = balance - price;
         }
         else {
-            double amountLeftToPay = price - balance;
+            int amountLeftToPay = price - balance;
             System.out.println("You must insert at least: " +
                                amountLeftToPay + " more cents.");
                    
@@ -96,9 +97,9 @@ public class TicketMachine
      * Return the money in the balance.
      * The balance is cleared.
      */
-    public double refundBalance()
+    public int refundBalance()
     {
-        double amountToRefund;
+        int amountToRefund;
         amountToRefund = balance;
         balance = 0;
         return amountToRefund;
@@ -107,18 +108,18 @@ public class TicketMachine
      * Devuelve el dinero que hace falta meter
      * para poder imprimir un ticket
      */
-    public double getAmountLeftToPay()
+    public int getAmountLeftToPay()
     {
-        double amountLeftToPay;
+        int amountLeftToPay;
         amountLeftToPay = price - balance;
         return amountLeftToPay;
     }
     /**
      * Vacia la maquina y devuelve la cantidad de dinero que habia en ella
      */
-    public double emptyMachine()
+    public int emptyMachine()
     {
-      double amountTotalMachine = balance + total;
+      int amountTotalMachine = balance + total;
       balance = 0;
       total = 0;
       return amountTotalMachine;
@@ -127,7 +128,7 @@ public class TicketMachine
      * Realiza descuento del 10% sobre el precio del billete
      */
     
-    public double getDiscountPrice()
+    public int getDiscountPrice()
     {
       return discountPrice;
     }
@@ -154,7 +155,7 @@ public class TicketMachine
             balance = balance - discountPrice;
         }
         else {
-            double amountLeftToPay = discountPrice - balance;
+            int amountLeftToPay = discountPrice - balance;
             System.out.println("You must insert at least: " +
                                amountLeftToPay + " more cents.");
                    
@@ -164,9 +165,9 @@ public class TicketMachine
      * Devuelve el dinero que hace falta meter
      * para poder imprimir un ticket con descuento
      */
-    public double getAmountLeftToPayDiscount()
+    public int getAmountLeftToPayDiscount()
     {
-       double amountLeftToPayDiscount = discountPrice - balance;
+       int amountLeftToPayDiscount = discountPrice - balance;
        return amountLeftToPayDiscount;
       
     }
