@@ -19,16 +19,20 @@ public class TicketMachine
     private int total;
     //The price of a ticket with discount from this machine.
     private int discountPrice;
+    //Select a discount option when you create a new TicketMachine
+    private boolean discountOption;
 
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(int cost, int percentageDiscount)
+    public TicketMachine(int cost, int percentageDiscount, boolean option)
     {
         price = cost;
         discountPrice = price - (price * percentageDiscount/100);
         balance = 0;
         total = 0;
+        discountOption = option;
+        
         
     }
 
@@ -140,7 +144,7 @@ public class TicketMachine
      */
     public void printTicketDiscount()
     {
-        if(balance >= discountPrice) {
+        if(balance >= discountPrice && discountOption == true) {
             // Simulate the printing of a ticket.
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
@@ -153,6 +157,9 @@ public class TicketMachine
             total = total + discountPrice;
             // Reduce the balance by the prince.
             balance = balance - discountPrice;
+        }
+        else if(discountOption == false){
+            System.out.println("Sorry, you can´t print tickets with discount");
         }
         else {
             int amountLeftToPay = discountPrice - balance;
